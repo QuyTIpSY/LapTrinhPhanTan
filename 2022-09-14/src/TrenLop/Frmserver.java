@@ -47,9 +47,22 @@ public class Frmserver extends javax.swing.JFrame {
                         b.close();
                         f.close();
                     }
-//                    if(cp.equals("")) {
-//                        
-//                    }
+                    String[] t = cp.split("[;]");
+                    if(t[0].equals("/+")){
+                        int max = Integer.parseInt(t[1]);
+                        int min = Integer.parseInt(t[1]);
+                        int tong=Integer.parseInt(t[1]);
+                        int sl = t.length-1;
+                        for(int i=2; i<t.length; i++) {
+                            tong+=Integer.parseInt(t[i]);
+                            if(max<Integer.parseInt(t[i])) max=Integer.parseInt(t[i]);
+                            if(min>Integer.parseInt(t[i])) min=Integer.parseInt(t[i]);
+                        }
+                        gn.Gui("Tổng: " + tong, ipclient, 1264);
+                        gn.Gui("Số lớn nhất: " + max, ipclient, 1264);
+                        gn.Gui("Số nhỏ nhất: " + min, ipclient, 1264);
+                        gn.Gui("Số chữ số Client gửi lên: " + sl, ipclient, 1264);
+                    }
                     
                     
                     

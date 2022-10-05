@@ -24,7 +24,7 @@ public class GuiNhan {
     
     public String Nhan() throws Exception{
         //Lap vo han de doi client noi len
-        Socket c=   Sserver.accept();
+        Socket c =  Sserver.accept();
         System.out.println("Da co 1 client connected ........");
         //Tạo luồng để nhận thông tin client gửi lên
         InputStreamReader is= new InputStreamReader(c.getInputStream());
