@@ -158,7 +158,7 @@ public class Frmclient extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            gn.MoCong(1264);
+            gn.MoCong(1261);
             gn.Nhan();
             TuyenNhan tn=new TuyenNhan();
             tn.start();

@@ -4,7 +4,6 @@ package TrenLop;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.InetAddress;
-import java.nio.Buffer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,6 +17,16 @@ import java.nio.Buffer;
 public class Frmserver extends javax.swing.JFrame {
 
     public class TuyenNhan extends Thread{
+        public static long gt(int n) {
+            long s = 1;
+            for (int i = 1; i <= n; i++)
+                s *= i;
+            return s;
+        }
+        public static long C(int k, int n) {
+            return  gt(n) / (gt(k)*gt(n - k));
+        }
+        
         public void run(){
             try {
                  while(true){
@@ -26,27 +35,34 @@ public class Frmserver extends javax.swing.JFrame {
                     String ipclient = ds[0];
                     String cp = ds[1];
                     Runtime r = Runtime.getRuntime();
+                    
+                    // Gửi trả lại dong chữ "XLPT"
                     if(cp.equals("/tm"))
-                        gn.Gui("XLPT", ipclient, 1264);
+                        gn.Gui("XLPT", ipclient, 12);
                     list1.add(st);
                     list1.select(list1.getItemCount()-1);
+                    // Mở notepad
                     if(cp.equals("/notepad"))
                         r.exec("notepad");
+                    // Mở file excel
                     if(cp.equals("/excel"))
                         r.exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\EXCEL.EXE");
+                    // Hiển thị tên Server
                     if(cp.equals("/ht"))
-                        gn.Gui(InetAddress.getLocalHost().getHostName(), ipclient, 1264);
+                        gn.Gui(InetAddress.getLocalHost().getHostName(), ipclient, 12);
+                    // Kết quả XSKT
                     if(cp.equals("/xskt")) {
                         FileReader f = new FileReader("xoso.txt");
                         BufferedReader b = new BufferedReader(f);
                         while(true) {
                             String st1 = b.readLine();
                             if(st1=="" || st1==null) break;
-                            gn.Gui(st1, ipclient, 1264);
+                            gn.Gui(st1, ipclient, 12);
                         }
                         b.close();
                         f.close();
                     }
+                    // Dãy số
                     String[] t = cp.split("[;]");
                     if(t[0].equals("/+")){
                         int max = Integer.parseInt(t[1]);
@@ -58,15 +74,20 @@ public class Frmserver extends javax.swing.JFrame {
                             if(max<Integer.parseInt(t[i])) max=Integer.parseInt(t[i]);
                             if(min>Integer.parseInt(t[i])) min=Integer.parseInt(t[i]);
                         }
-                        gn.Gui("Tổng: " + tong, ipclient, 1264);
-                        gn.Gui("Số lớn nhất: " + max, ipclient, 1264);
-                        gn.Gui("Số nhỏ nhất: " + min, ipclient, 1264);
-                        gn.Gui("Số chữ số Client gửi lên: " + sl, ipclient, 1264);
+                        gn.Gui("Tong: " + tong, ipclient, 1261);
+                        gn.Gui("So lon nhat: " + max, ipclient, 1261);
+                        gn.Gui("So nho nhat: " + min, ipclient, 1261);
+                        gn.Gui("So chu so Client gui len: " + sl + " so", ipclient, 1261);
+                    }
+                    // Tính kết quả tổ hợp k chập n
+                    if(t[0].equals("/C")) {
+                        int k = Integer.parseInt(t[1]);
+                        int n = Integer.parseInt(t[2]);
+                        gn.Gui("To hop bang: " + C(k, n), ipclient, 1261);
                     }
                     
                     
                     
-//                    list1.add(st);
                  }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -112,7 +133,7 @@ public class Frmserver extends javax.swing.JFrame {
 
         jLabel2.setText("PORT");
 
-        txtport.setText("1264");
+        txtport.setText("1261");
         txtport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtportActionPerformed(evt);
