@@ -33,7 +33,7 @@ public class GuiNhanUDP {
         byte bodem[]=new byte[256];                 //Tạo ra bộ đệm chứa dữ liệu cần gửi
         bodem=data.getBytes();                      //Chuyển chuỗi thành dãy các byte
         InetAddress mc=InetAddress.getByName(ip);   //Lấy thông tin của máy cần gửi
-        DatagramPacket dr= new DatagramPacket(bodem,bodem.length,mc,1260);
+        DatagramPacket dr= new DatagramPacket(bodem,bodem.length,mc,cong);
         dg.send(dr);                                //Gửi dữ liệu đi
         dg.close();
     }
