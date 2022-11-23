@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import bean.chitiettaikhoan;
 import bean.taikhoanbean;
 import dao.dangnhapdao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-/**
- *
- * @author quang
- */
+import java.util.ArrayList;
+import java.util.Date;
+
 public class TinhToan extends UnicastRemoteObject implements ITinhToan{
 
     public TinhToan() throws RemoteException {
@@ -51,4 +51,31 @@ public class TinhToan extends UnicastRemoteObject implements ITinhToan{
         return dn.ktdn(sotaikhoan, matkhau);
     }
     
+    public String hoten(String sotaikhoan) throws Exception {
+        return dn.TaiKhoan(sotaikhoan).getHoTen();
+    }
+    
+    public long sotien(String sotaikhoan) throws Exception {
+        return dn.TaiKhoan(sotaikhoan).getSoTien();
+    }
+    
+    public void ruttien(String sotaikhoan, long sotienrut) throws Exception{
+       dn.RutTien(sotaikhoan, sotienrut);
+    }
+    
+    public void chitiettaikhoan(java.sql.Date ngayruttien, long sotienrut, String sotaikhoan, String ghichu) throws Exception{
+       dn.ChiTietTaiKhoan(ngayruttien, sotienrut, sotaikhoan, ghichu);
+    }
+    
+    public void NapTien(String sotaikhoan, long sotienrut) throws Exception{
+       dn.RutTien(sotaikhoan, sotienrut);
+    }
+    
+    public void DoiMatKhau(String sotaikhoan, String matkhaumoi) throws Exception{
+       dn.DoiMatKhau(sotaikhoan, matkhaumoi);
+    }
+    
+    public ArrayList<chitiettaikhoan> LichSuGD(String sotaikhoan) throws Exception{
+        return dn.LichSuGD(sotaikhoan);
+    }
 }

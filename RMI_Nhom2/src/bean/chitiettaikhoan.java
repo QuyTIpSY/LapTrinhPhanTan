@@ -4,23 +4,24 @@
  */
 package bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author quang
  */
-public class chitiettaikhoan {
+public class chitiettaikhoan implements Serializable{
     private int Id;
     private Date NgayRutTien;
-    private int SoTienRutRa;
+    private long SoTienRutRa;
     private String SoTaiKhoan;
     private String Ghichu;
 
     public chitiettaikhoan() {
     }
 
-    public chitiettaikhoan(int Id, Date NgayRutTien, int SoTienRutRa, String SoTaiKhoan, String Ghichu) {
+    public chitiettaikhoan(int Id, Date NgayRutTien, long SoTienRutRa, String SoTaiKhoan, String Ghichu) {
         this.Id = Id;
         this.NgayRutTien = NgayRutTien;
         this.SoTienRutRa = SoTienRutRa;
@@ -44,11 +45,11 @@ public class chitiettaikhoan {
         this.NgayRutTien = NgayRutTien;
     }
 
-    public int getSoTienRutRa() {
+    public long getSoTienRutRa() {
         return SoTienRutRa;
     }
 
-    public void setSoTienRutRa(int SoTienRutRa) {
+    public void setSoTienRutRa(long SoTienRutRa) {
         this.SoTienRutRa = SoTienRutRa;
     }
 
